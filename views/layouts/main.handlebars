@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{{ pageTitle }}</title>
+    <link rel="stylesheet" href="/public/css/styles-from-sass.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="the-heading">Gutenberg</h1>
+        <section class="row">
+            <nav class="col-sm-12 col-md-4">
+                <a href="/">BookList</a>
+            </nav>
+            <main class="col-sm-12 col-md-8">
+                <h2>{{ pageTitle }}</h2>
+                {{{body}}}
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
+
+<script>
+    const {remote} = require('electron')
+    const {Menu, MenuItem} = remote
+
+    const menu = new Menu()
+    menu.append(new MenuItem({label: 'MenuItem1', click() { alert('item 1 clicked') }}))
+    menu.append(new MenuItem({type: 'separator'}))
+    menu.append(new MenuItem({label: 'MenuItem2', type: 'checkbox', checked: true}))
+
+    window.addEventListener('contextmenu', (e) => {
+      e.preventDefault()
+      menu.popup(remote.getCurrentWindow())
+    }, false)
+</script>
